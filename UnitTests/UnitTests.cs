@@ -254,6 +254,28 @@ namespace UnitTests
         public void TestQueueLast()
         {
             // zach
+
+            var queue = new Queue<int>();
+            Assert.ThrowsException<EmptyQueueException>(() =>
+            {
+                int x = queue.Last;
+            });
+
+            for (int i = 0; i < 10; i++)
+            {
+                queue.Enqueue(i);
+                Assert.AreEqual(i, queue.Last);
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                queue.Dequeue();
+            }
+
+            Assert.ThrowsException<EmptyQueueException>(() =>
+            {
+                int x = queue.Last;
+            });
         }
 
         [TestMethod]
@@ -485,7 +507,35 @@ namespace UnitTests
         [TestMethod]
         public void TestDequeBack()
         {
-            // bryce 
+            // bryce
+
+            Deque<int> myDeque = new Deque<int>();
+
+            Assert.ThrowsException<EmptyQueueException>(() =>
+            {
+                var back = myDeque.Back;
+            });
+
+            for (int i = 0; i < 5; i++)
+            {
+                myDeque.AddBack(i);
+            }
+
+            Assert.AreEqual(myDeque.Back, 4);
+
+            myDeque.AddBack(5);
+            myDeque.AddFront(6);
+
+            Assert.AreEqual(myDeque.Back, 5);
+
+            myDeque.RemoveBack();
+            myDeque.RemoveBack();
+
+            Assert.AreEqual(myDeque.Back, 3);
+
+            myDeque.RemoveFront();
+
+            Assert.AreEqual(myDeque.Back, 3);
         }
     }
 }
