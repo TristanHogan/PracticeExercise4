@@ -45,7 +45,7 @@ namespace UnitTests
             Assert.AreEqual(0, stack.Length);
 
 
-            Assert.ThrowsException<EmptyStackException>(() =>
+            Assert.ThrowsException<EmptyStackException>( () =>
             {
                 stack.Pop();
             });
@@ -57,6 +57,40 @@ namespace UnitTests
         public void TestStackPeek()
         {
             // lou
+            var stack = new Stack<int>();
+
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3);
+            stack.Push(5);
+            stack.Push(8);
+
+            Assert.AreEqual(5, stack.Length);
+
+            Assert.AreEqual("8\n5\n3\n2\n1\n", stack.ToString());
+            stack.Pop();
+            Assert.AreEqual(5, stack.Peek());
+            Assert.AreEqual(4, stack.Length);
+            Assert.AreEqual("5\n3\n2\n1\n", stack.ToString());
+
+            stack.Pop();
+
+            Assert.AreEqual(3, stack.Peek());
+            Assert.AreEqual(3, stack.Length);
+
+            Assert.AreEqual("3\n2\n1\n", stack.ToString());
+
+            stack.Pop();
+            stack.Pop();
+            stack.Pop();
+
+            Assert.AreEqual(0, stack.Length);
+
+            Assert.ThrowsException<EmptyStackException>(() =>
+            {
+                stack.Peek();
+            });
+
         }
 
         [TestMethod]
@@ -168,6 +202,7 @@ namespace UnitTests
         [TestMethod]
         public void TestQueueEnqueue()
         {
+            // 
             Queue<int> queue = new Queue<int>();
 
             queue.Enqueue(1);
