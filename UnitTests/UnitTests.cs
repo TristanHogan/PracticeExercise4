@@ -502,6 +502,31 @@ namespace UnitTests
         public void TestDequeFront()
         {
             // tim
+
+            Deque<int> deque = new Deque<int>();
+
+            Assert.ThrowsException<EmptyQueueException>(() =>
+            {
+                var back = deque.Front;
+            });
+
+            deque.AddFront(1);
+            deque.AddFront(2);
+            deque.AddFront(3);
+            deque.AddFront(4);
+            deque.AddFront(5);
+
+            Assert.AreEqual(5, deque.Front);
+
+            deque.RemoveFront();
+
+            Assert.AreEqual(4, deque.Front);
+
+            deque.RemoveFront();
+            deque.RemoveFront();
+
+
+            Assert.AreEqual(1, deque.Front);
         }
 
         [TestMethod]
