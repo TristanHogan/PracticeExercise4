@@ -526,7 +526,7 @@ namespace UnitTests
             deque.RemoveFront();
 
 
-            Assert.AreEqual(1, deque.Front);
+            Assert.AreEqual(2, deque.Front);
         }
 
         [TestMethod]
